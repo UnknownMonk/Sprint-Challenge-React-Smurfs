@@ -8,9 +8,9 @@ class Smurfs extends Component {
   }
   render() {
     return (
-      <div className="Smurfs">
+      <div>
         <h1>Smurf Village</h1>
-        <ul>
+        <ul style={Smurfs2}>
           {this.props.smurfs.map(smurf => {
             return (
               <Smurf
@@ -21,7 +21,7 @@ class Smurfs extends Component {
                 id={smurf.id}
                 age={smurf.age}
                 height={smurf.height}
-                pic={smurf.pic}
+                img={smurf.img}
                 key={smurf.id}
               />
             );
@@ -34,6 +34,12 @@ class Smurfs extends Component {
 
 Smurf.defaultProps = {
   smurfs: []
+};
+
+const Smurfs2 = {
+  display: 'flex',
+  justifyContent: 'space-evenly',
+  flexWrap: 'wrap'
 };
 
 export default Smurfs;

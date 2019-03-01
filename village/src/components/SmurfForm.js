@@ -7,7 +7,8 @@ class SmurfForm extends Component {
     this.state = {
       name: '',
       age: '',
-      height: ''
+      height: '',
+      img: ''
     };
   }
 
@@ -28,7 +29,8 @@ class SmurfForm extends Component {
     this.setState({
       name: '',
       age: '',
-      height: ''
+      height: '',
+      img: ''
     });
   };
 
@@ -57,6 +59,12 @@ class SmurfForm extends Component {
             placeholder="height"
             value={this.state.height}
             name="height"
+          />
+          <input
+            onChange={this.handleInputChange}
+            placeholder="img"
+            value={this.state.img}
+            name="img"
           />
 
           <button type="submit">Add to the village</button>
