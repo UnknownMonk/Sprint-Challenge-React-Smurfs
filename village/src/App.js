@@ -11,7 +11,12 @@ class App extends Component {
     super(props);
     this.state = {
       smurfs: [],
-      newSmurf: {}
+      newSmurf: {
+        id: '',
+        name: '',
+        age: '',
+        height: ''
+      }
     };
   }
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
@@ -40,27 +45,36 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  editSmurf = () => {
+  editSmurf = e => {
+    e.preventDefault();
     const upDateSmurf = this.state.newSmurf;
     const id = this.state.newSmurf.id;
+    console.log(id);
+
     axios
       .put(`http://localhost:3333/smurfs/${id}`, upDateSmurf)
-      .then(res =>
-        this.setState({
-          smurfs: res.data
-        })
-      )
+      .then(res => console.log(res.data))
       .catch(err => console.log(err));
   };
 
-  upDateSmurfs = id => {
-    console.log(id);
+  upDateSmurfs = smurf => {
+    console.log(smurf);
 
     this.setState({
-      newSmurf: id
+      newSmurf: smurf
     });
   };
-
+  handleChanges = e => {
+    e.persist();
+    this.setState(prevState => {
+      return {
+        newSmurf: {
+          ...prevState.newSmurf,
+          [e.target.name]: e.target.value
+        }
+      };
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -77,12 +91,17 @@ class App extends Component {
             />
           )}
         />
-        {/* <form onSubmit={this.editSmurf}>
+        <form>
           <input
             value={this.state.newSmurf.name}
-            onChange={this.upDateSmurfs}
+            onChange={this.handleChanges}
+            name="name"
+            type="text"
           />
-        </form> */}
+          <button type="submit" onClick={this.editSmurf}>
+            send
+          </button>
+        </form>
       </div>
     );
   }
