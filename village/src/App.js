@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      smurfs: []
+      smurfs: [],
+      newSmurf: {}
     };
   }
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
@@ -39,6 +40,27 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  editSmurf = () => {
+    const upDateSmurf = this.state.newSmurf;
+    const id = this.state.newSmurf.id;
+    axios
+      .put(`http://localhost:3333/smurfs/${id}`, upDateSmurf)
+      .then(res =>
+        this.setState({
+          smurfs: res.data
+        })
+      )
+      .catch(err => console.log(err));
+  };
+
+  upDateSmurfs = id => {
+    console.log(id);
+
+    this.setState({
+      newSmurf: id
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -48,9 +70,19 @@ class App extends Component {
           exact
           path="/"
           render={() => (
-            <Smurfs deleteSmurf={this.deleteSmurf} smurfs={this.state.smurfs} />
+            <Smurfs
+              upDateSmurfs={this.upDateSmurfs}
+              deleteSmurf={this.deleteSmurf}
+              smurfs={this.state.smurfs}
+            />
           )}
         />
+        {/* <form onSubmit={this.editSmurf}>
+          <input
+            value={this.state.newSmurf.name}
+            onChange={this.upDateSmurfs}
+          />
+        </form> */}
       </div>
     );
   }
