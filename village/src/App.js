@@ -5,6 +5,7 @@ import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 import { Route } from 'react-router-dom';
 import Nav from './components/Nav';
+import './components/smurfbg.png';
 
 class App extends Component {
   constructor(props) {
@@ -85,23 +86,15 @@ class App extends Component {
           path="/"
           render={() => (
             <Smurfs
+              imValue={this.state.newSmurf}
+              editSmurf={this.editSmurf}
+              handleChanges={this.handleChanges}
               upDateSmurfs={this.upDateSmurfs}
               deleteSmurf={this.deleteSmurf}
               smurfs={this.state.smurfs}
             />
           )}
         />
-        <form>
-          <input
-            value={this.state.newSmurf.name}
-            onChange={this.handleChanges}
-            name="name"
-            type="text"
-          />
-          <button type="submit" onClick={this.editSmurf}>
-            send
-          </button>
-        </form>
       </div>
     );
   }

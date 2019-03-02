@@ -2,11 +2,12 @@ import React from 'react';
 
 const Smurf = props => {
   return (
-    <div className="Smurf">
-      <h3>{props.name}</h3>
+    <div style={SmurfCard} className="Smurf">
+      <img style={imgSize} src={props.img} alt="smurf" />
+      <h3 style={CardFont}>{props.name}</h3>
+
+      <p style={CardFont}>{props.age} smurf years old</p>
       <strong>{props.height} tall</strong>
-      <p>{props.age} smurf years old</p>
-      <img style={imgSize} src={props.img} alt="" />
       <div>
         <button onClick={() => props.deleteSmurf(props.id)}>x</button>
         <button onClick={() => props.upDateSmurfs(props.smurf)}>edit</button>
@@ -21,9 +22,18 @@ Smurf.defaultProps = {
   age: ''
 };
 
+const SmurfCard = {
+  backgroundColor: 'rgba(240,255,255,.8)',
+  border: '1px solid lightBlue',
+  borderRadius: '5%',
+  padding: '10px'
+};
+const CardFont = {
+  margin: '2px 0'
+};
 const imgSize = {
-  width: '200px',
-  height: '200px'
+  width: '150px',
+  height: '150px'
 };
 
 export default Smurf;

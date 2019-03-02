@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "cd village && yarn install --only=dev && yarn install && yarn build"
   },
   "author": "",
   "license": "ISC",

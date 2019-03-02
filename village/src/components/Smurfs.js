@@ -27,6 +27,17 @@ class Smurfs extends Component {
             );
           })}
         </ul>
+        <form>
+          <input
+            value={this.props.imValue.name}
+            onChange={this.props.handleChanges}
+            name="name"
+            type="text"
+          />
+          <button type="submit" onClick={this.props.editSmurf}>
+            send
+          </button>
+        </form>
       </div>
     );
   }
