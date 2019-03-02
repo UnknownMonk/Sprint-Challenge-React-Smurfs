@@ -1,3 +1,9 @@
 .App {
   text-align: center;
+  width: 80%;
+  margin: 5% auto;
+  border: 1px solid black;
+  background-image: url('./components/smurfbg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
